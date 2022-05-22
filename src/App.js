@@ -14,18 +14,21 @@ function App() {
   return (
     <div className='app'>
       <Navbar></Navbar>
-      <Routes>
-        <Route path='/' element={<Home></Home>}></Route>
-      </Routes>
+      <div className='max-w-7xl mx-auto lg:px-12'>
+
+
+
+
+        <Routes>
+          <Route path='/' element={<Home></Home>}></Route>
+        </Routes>
 
 
 
 
 
 
-
-
-
+      </div>
 
       <Footer></Footer>
     </div>

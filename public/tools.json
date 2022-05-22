@@ -1,0 +1,49 @@
+[
+    {
+        "name": "Drills",
+        "description": "A drill is a type of electrical tool that has a spinning tip. It can be used for many different jobs depending on the attachment. If a drill bit is attached, the drill can be used to make holes in material. A driver bit can also be attached, allowing the drill to put screws into the desired material",
+        "image": "https://i.ibb.co/SwrTm9z/1.png",
+        "price": "632.94",
+        "min_order": "54",
+        "available_quantity": "286"
+    },
+    {
+        "name": "Screw Drivers",
+        "description": "A screwdriver is a tool, manual or powered, used for driving screws. A typical simple screwdriver has a handle and a shaft, ending in a tip the user puts into the screw head before turning the handle.",
+        "image": "https://i.ibb.co/gTNSxJx/2.png",
+        "price": "520.46",
+        "min_order": "87",
+        "available_quantity": "216"
+    },
+    {
+        "name": "Rivet guns",
+        "description": "A rivet gun, also known as a rivet hammer or a pneumatic hammer, is a type of tool used to drive rivets. The rivet gun is used on rivet's factory head, and a bucking bar is used to support the tail of the rivet. The energy from the hammer in the rivet gun drives the work and the rivet against the bucking bar.",
+        "image": "https://i.ibb.co/Y0xnvtX/3.png",
+        "price": "843.65",
+        "min_order": "79",
+        "available_quantity": "261"
+    },
+    {
+        "name": "Balancer",
+        "description": "A scale or balance is a device used to measure weight or mass. These are also known as mass scales, weight scales, mass balances, and weight balances. The traditional scale consists of two plates or bowls suspended at equal distances from a fulcrum.",
+        "image": "https://i.ibb.co/xfLcRC0/4.png",
+        "price": "617.48",
+        "min_order": "76",
+        "available_quantity": "388"
+    },
+    {
+        "name": "Sander's",
+        "description": "sander, portable power tool used for smoothing, polishing, or cleaning a surface, as of wood, plastic, or metal. Sanders are also used to roughen surfaces in preparation for finishing. There are three main types of power sanders: the disk sander, the belt sander, and the orbital sander.",
+        "price": "804.15",
+        "min_order": "85",
+        "available_quantity": "373"
+    },
+    {
+        "name": "Hose Reels",
+        "description": "A Hose Reel is a cylindrical spindle made of either metal, fiberglass, or plastic and is used for storing a hose. The most common styles of hose reels are spring driven, hand crank, or motor driven. Hose reels are categorized by the diameter and length of the hose they hold, the pressure rating and the rewind method.",
+        "image": "http://placehold.it/32x32",
+        "price": "610.56",
+        "min_order": "75",
+        "available_quantity": "378"
+    }
+]
