@@ -12,7 +12,7 @@ const Tool = ({ tool }) => {
             <div class="card-body">
                 <h2 class="card-title">{name}</h2>
                 <p>{description.length > 100 ? description.slice(0, 100) : description}...</p>
-                <p className='font-bold'>Price : ${price}/unit</p>
+                <p className='font-bold'>Price : ${price}/piece</p>
                 <p className='font-bold'>Min Order: {min_order} piece</p>
                 <p className='font-bold'>Available : {available_quantity} piece</p>
                 <div class="card-actions justify-end">

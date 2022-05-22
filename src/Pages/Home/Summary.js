@@ -2,8 +2,8 @@ import React from 'react'
 
 const Summary = () => {
     return (
-        <div className='my-8'>
-            <h1 className='text-5xl text-center text-accent'>Million Users Trust Us</h1>
+        <div className='my-28'>
+            <h1 className='text-5xl text-center text-accent'>Millions Clients Trust Us</h1>
             <p className='uppercase text-center my-3 text-2xl text-secondary'>Try to understand users expectation</p>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-5 lg:gap-10'>
                 <div class="card md:max-w-md lg:max-w-lg bg-base-100 shadow-xl">
