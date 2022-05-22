@@ -11,6 +11,10 @@ import Login from './Pages/Login/Login';
 import Signup from './Pages/Login/Signup';
 import Purchase from './Pages/Purchase/Purchase';
 import RequireAuth from './Pages/Login/RequireAuth';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import MyOrders from './Pages/Dashboard/MyOrders';
+import MyReviews from './Pages/Dashboard/MyReviews';
+import MyProfile from './Pages/Dashboard/MyProfile';
 
 function App() {
   useEffect(() => {
@@ -26,12 +30,17 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home></Home>}></Route>
-          <Route path='/purchase' element={<RequireAuth>
+          <Route path='/purchase/:id' element={<RequireAuth>
             <Purchase></Purchase>
           </RequireAuth>}></Route>
           <Route path='/security' element={<Security></Security>}>
             <Route index element={<Login></Login>}></Route>
             <Route path='/security/signup' element={<Signup></Signup>}></Route>
+          </Route>
+          <Route path='/dashboard' element={<Dashboard></Dashboard>}>
+            <Route index element={<MyOrders></MyOrders>}></Route>
+            <Route path='/dashboard/reviews' element={<MyReviews></MyReviews>}></Route>
+            <Route path='/dashboard/profile' element={<MyProfile></MyProfile>}></Route>
           </Route>
         </Routes>
 

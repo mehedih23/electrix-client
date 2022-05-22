@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Tool from './Tool'
 
 const Tools = () => {
     const [tools, setTools] = useState([])
-    fetch('http://localhost:1111/tools')
-        .then(response => response.json())
-        .then(data => setTools(data))
+    useEffect(() => {
+        fetch('http://localhost:1111/tools')
+            .then(response => response.json())
+            .then(data => setTools(data))
+    }, [])
     return (
         <div className='my-8'>
             <h3 className='text-3xl font-bold text-center'>Tools We Have - </h3>

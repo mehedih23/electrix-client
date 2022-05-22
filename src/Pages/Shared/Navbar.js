@@ -9,9 +9,12 @@ const Navbar = () => {
     const [user] = useAuthState(auth);
     const menu = <>
         <li className='mx-2'><NavLink className='font-bold' to='/'>Home</NavLink></li>
+        {user && <>
+            <li className='mx-2'><NavLink className='font-bold' to='/dashboard'>Dashboard</NavLink></li>
+        </>}
+
         <li className='mx-2'><NavLink className='font-bold' to='/about'>about</NavLink></li>
         <li className='mx-2'><NavLink className='font-bold' to='/blog'>blog</NavLink></li>
-        <li className='mx-2'><NavLink className='font-bold' to='/products'>products</NavLink></li>
         <li className='mx-2'><NavLink className='font-bold' to='/contact'>contact</NavLink></li>
     </>
     return (
@@ -33,6 +36,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                {user && <span className='font-bold mr-8'>{user?.displayName.split(' ')[0]}</span>}
                 {user ? <button onClick={() => signOut(auth)} className="btn btn-outline btn-accent rounded-full"><Link to='/'>Log Out</Link></button> : <button className="btn btn-outline btn-accent rounded-full"><Link to='/security'>Log In</Link></button>}
             </div>
         </div>
