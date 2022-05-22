@@ -6,6 +6,9 @@ import Navbar from './Pages/Shared/Navbar';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import Security from './Pages/Login/Security';
+import Login from './Pages/Login/Login';
+import Signup from './Pages/Login/Signup';
 
 function App() {
   useEffect(() => {
@@ -21,6 +24,10 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home></Home>}></Route>
+          <Route path='/security' element={<Security></Security>}>
+            <Route index element={<Login></Login>}></Route>
+            <Route path='/security/signup' element={<Signup></Signup>}></Route>
+          </Route>
         </Routes>
 
 
