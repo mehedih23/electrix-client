@@ -1,29 +1,58 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
+import auth from '../../firebase.init';
 
 const Login = () => {
     // from form-hook //
     const { register, formState: { errors }, handleSubmit } = useForm();
 
 
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+    let navigate = useNavigate();
 
+    // users //
+    useEffect(() => {
+        if (user || userGoogle) {
+            navigate(from, { replace: true });
+        }
+    }, [from, navigate, user, userGoogle])
+
+
+    // loadings //
+    if (loading || loadingGoogle) {
+        return <div className='h-screen flex justify-center items-center'>
+            <ClipLoader loading={loading || loadingGoogle} size={150} />
+        </div>
+    }
 
     // errors //
-    /* let signInError;
+    let signInError;
     if (error || errorGoogle) {
         signInError = <span className='text-sm text-red-600'>{error?.message || errorGoogle?.message}</span>
-    } */
+    }
 
 
     const onSubmit = data => {
-        console.log(data)
+        const email = data.email;
+        const password = data.password;
+        signInWithEmailAndPassword(email, password)
 
     };
     return (
         <div>
-            <h2 className="text-3xl text-center font-bold">Login</h2>
-            <form className='' onSubmit={handleSubmit(onSubmit)}>
+            <h1 className='text-3xl text-center underline text-green-700'>Login</h1>
+            <form className='my-4' onSubmit={handleSubmit(onSubmit)}>
 
                 {/* email field start */}
                 <label className="label">
@@ -71,12 +100,12 @@ const Login = () => {
                 {/* forgot password end */}
                 <input type="submit" value="Login" className='btn btn-active  w-72 md:w-80 lg:w-96 mt-3' />
             </form>
-            {/* {signInError} */}
+            {signInError}
 
             <p className='my-4'>New to Doctors Portal? <Link to='/security/signup' className='text-secondary font-bold'>Create an account</Link></p>
             <div className="divider mb-4">OR</div>
             <button
-                // onClick={() => signInWithGoogle()}
+                onClick={() => signInWithGoogle()}
                 className='btn btn-outline w-72 md:w-80 lg:w-96 btn-accent'
             >CONTINUE WITH GOOGLE
             </button>

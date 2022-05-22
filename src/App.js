@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import Security from './Pages/Login/Security';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Login/Signup';
+import Purchase from './Pages/Purchase/Purchase';
+import RequireAuth from './Pages/Login/RequireAuth';
 
 function App() {
   useEffect(() => {
@@ -24,6 +26,9 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home></Home>}></Route>
+          <Route path='/purchase' element={<RequireAuth>
+            <Purchase></Purchase>
+          </RequireAuth>}></Route>
           <Route path='/security' element={<Security></Security>}>
             <Route index element={<Login></Login>}></Route>
             <Route path='/security/signup' element={<Signup></Signup>}></Route>

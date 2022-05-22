@@ -1,16 +1,61 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { ClipLoader } from 'react-spinners';
+import toast from 'react-hot-toast';
+
 
 
 const Signup = () => {
     // from form-hook //
     const { register, formState: { errors }, handleSubmit } = useForm();
+    // firebase login services //
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        errorCreate,
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating, errorUpdate] = useUpdateProfile(auth);
+    const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
+
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+    let navigate = useNavigate();
+
+
+    // users //
+    useEffect(() => {
+        if (user || userGoogle) {
+            navigate(from, { replace: true });
+        }
+    }, [from, navigate, user, userGoogle])
+
+
+    // loadings //
+    if (loading || updating || loadingGoogle) {
+        return <div className='h-screen flex justify-center items-center'>
+            <ClipLoader loading={loading || updating || loadingGoogle} size={150} />
+        </div>
+    }
+
+    // errors //
+    let signInError;
+    if (errorCreate || errorUpdate || errorGoogle) {
+        signInError = <span className='text-sm text-red-600'>{errorCreate?.message || errorUpdate?.message || errorGoogle?.message}</span>
+    }
 
 
 
-    const onSubmit = data => {
-        console.log(data)
+    const onSubmit = async data => {
+        const name = data.name;
+        const email = data.email;
+        const password = data.password;
+        await createUserWithEmailAndPassword(email, password)
+        await updateProfile({ displayName: name });
+        toast.success('Please Verify your email.', { id: 'verify-email' });
 
     };
     return (
@@ -89,13 +134,14 @@ const Signup = () => {
                     </label>
                     <input type="submit" value="Register" className='btn btn-active  w-72 md:w-80 lg:w-96 mt-3' />
                 </form>
+                {signInError}
             </div>
 
             <p className='my-4'>Already Have an Account? <Link to='/security' className='text-secondary font-bold'>Login</Link></p>
             <div className="divider mb-4">OR</div>
 
             <button
-                // onClick={() => signInWithGoogle()}
+                onClick={() => signInWithGoogle()}
                 className='btn btn-outline btn-accent  w-72 md:w-80 lg:w-96'
             >CONTINUE WITH GOOGLE
             </button>
