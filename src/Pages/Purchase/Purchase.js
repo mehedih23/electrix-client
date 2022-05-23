@@ -21,7 +21,7 @@ const Purchase = () => {
     const handlePlaceOrder = (e) => {
         e.preventDefault();
 
-        const name = e.target.name.value;
+        const productName = name;
         const email = e.target.email.value;
         const phone = e.target.phone.value;
         const address = e.target.address.value;
@@ -30,7 +30,7 @@ const Purchase = () => {
         const total = (parseInt(orderQuantity) * parseFloat(price)).toFixed(2);
 
         const order = {
-            name,
+            productName,
             email,
             phone,
             address,
