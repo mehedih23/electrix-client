@@ -22,14 +22,14 @@ const Login = () => {
     let navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
 
-    const [token] = useToken(user || userGoogle)
 
+    const [token] = useToken(user || userGoogle)
     // users //
     useEffect(() => {
         if (token) {
             navigate(from, { replace: true });
         }
-    }, [from, navigate, token])
+    }, [from, navigate, token, user, userGoogle])
 
 
     // loadings //

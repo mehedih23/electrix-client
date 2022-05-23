@@ -36,21 +36,21 @@ const Reviews = () => {
                     reviews.map((rev, index) => <div key={rev._id} id={`item${index + 1}`} className="carousel-item w-full">
                         <div className='w-3/4 m-auto flex flex-col justify-center items-center'>
                             {
-                                user.photoURL === null ? <>
+                                user?.photoURL === null ? <>
                                     <div className="avatar placeholder my-4">
                                         <div className="bg-neutral-focus text-neutral-content rounded-full w-24">
-                                            <span className='text-3xl'>{user.displayName.slice(0, 1)}</span>
+                                            <span className='text-3xl'>{user?.displayName?.slice(0, 1)}</span>
                                         </div>
 
                                     </div>
-                                    <p className='text-xl mb-4'>{user.displayName}</p>
+                                    <p className='text-xl mb-4'>{user?.displayName}</p>
                                 </> : <>
                                     <div className="avatar my-6">
                                         <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                            <img src={user.photoURL} alt={user.displayName} />
+                                            <img src={user?.photoURL} alt={user?.displayName} />
                                         </div>
                                     </div>
-                                    <p className='text-xl mb-6'>{user.displayName}</p>
+                                    <p className='text-xl mb-6'>{user?.displayName}</p>
                                 </>
                             }
                             <p className='text-center'>{rev.review}</p>
