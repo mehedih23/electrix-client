@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 
 const Order = ({ order, index, refetch }) => {
     const navigate = useNavigate()
-    const { _id, email, productName, orderQuantity, total } = order;
+    const { _id, email, productName, orderQuantity, total, paid, transactionId } = order;
 
     const handleDelete = () => {
         Swal.fire({
@@ -47,13 +47,19 @@ const Order = ({ order, index, refetch }) => {
             <td>{orderQuantity}</td>
             <td>${total}</td>
             <td>
-                <button
-                    onClick={() => navigate(`/dashboard/payment/${_id}`)}
-                    className='btn btn-accent btn-sm'
-                >Pay</button>  <button
-                    onClick={handleDelete}
-                    className='btn btn-error btn-sm'
-                >Delete</button>
+                {paid ? <>
+                    <p className='font-bold text-green-500'>Paid</p>
+                    <p className='font-bold text-green-500'>TrxId : {transactionId}</p>
+                </> : <>
+                    <button
+                        onClick={() => navigate(`/dashboard/payment/${_id}`)}
+                        className='btn btn-accent btn-sm'
+                    >Pay</button>  <button
+                        onClick={handleDelete}
+                        className='btn btn-error btn-sm'
+                    >Delete</button>
+                </>
+                }
             </td>
         </tr>
     )
