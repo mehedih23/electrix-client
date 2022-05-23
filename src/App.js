@@ -15,6 +15,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import MyOrders from './Pages/Dashboard/MyOrders';
 import MyReviews from './Pages/Dashboard/MyReviews';
 import MyProfile from './Pages/Dashboard/MyProfile';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   useEffect(() => {
@@ -22,6 +23,7 @@ function App() {
   }, [])
   return (
     <div className='app'>
+      <Toaster></Toaster>
       <Navbar></Navbar>
       <div className='max-w-7xl mx-auto lg:px-12'>
 

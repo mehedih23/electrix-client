@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom'
 import auth from '../../firebase.init';
 
@@ -7,7 +8,7 @@ const Purchase = () => {
     const { id } = useParams();
     const [tool, setTool] = useState({});
     const [user] = useAuthState(auth);
-    const [requiredQuantity, setRequireQuantity] = useState('');
+
 
     const { name, image, description, price, min_order, available_quantity } = tool;
     useEffect(() => {
@@ -16,13 +17,6 @@ const Purchase = () => {
             .then(data => setTool(data))
     }, [id])
 
-    const handleQuantity = (e) => {
-        setRequireQuantity(e.target.value);
-    }
-
-    const total = parseInt(requiredQuantity) * parseFloat(price);
-    console.log(parseInt(requiredQuantity))
-    console.log(parseFloat(price))
 
     const handlePlaceOrder = (e) => {
         e.preventDefault();
@@ -31,10 +25,41 @@ const Purchase = () => {
         const email = e.target.email.value;
         const phone = e.target.phone.value;
         const address = e.target.address.value;
-        const orderQuantity = requiredQuantity;
-        const totalPrice = total;
-        console.log(name, email, phone, address, orderQuantity, totalPrice);
+        const orderQuantity = e.target.minOrder.value;
+
+        const total = (parseInt(orderQuantity) * parseFloat(price)).toFixed(2);
+
+        const order = {
+            name,
+            email,
+            phone,
+            address,
+            orderQuantity,
+            total
+        }
+
+        if (parseInt(orderQuantity) < parseInt(min_order)) {
+            toast.error('You can not purchase less piece of items.', { id: 'less' })
+        } else if (parseInt(orderQuantity) > parseInt(available_quantity)) {
+            toast.error('You can not purchase more piece of items.', { id: 'more' })
+        } else {
+            fetch('http://localhost:1111/order', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(order)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.acknowledged) {
+                        e.target.reset();
+                        toast.success('Order complete successfully.', { id: 'order-success' })
+                    }
+                })
+        }
     }
+
 
 
     return (
@@ -123,30 +148,16 @@ const Purchase = () => {
                         type="number"
                         placeholder="Type here"
                         className="input input-bordered w-full max-w-xs"
-                        onChange={handleQuantity}
                     />
                     <label className="label">
                         <span class="label-text-alt text-red-600">{ }</span>;
                     </label>
 
-                    <label className="label">
-                        <span className="label-text">Total Price</span>
-                    </label>
-                    <input
-                        defaultValue={total.toFixed(2)}
-                        readOnly
-                        type="number"
-                        placeholder="Type here"
-                        className="input input-bordered w-full max-w-xs"
-                    />
-                    <label className="label"></label>
 
-                    <label className="label"></label>
                     <input
                         type="submit"
                         className="input input-bordered w-full max-w-xs btn btn-accent btn-outline"
                         value='Place Order'
-                        disabled={requiredQuantity < min_order || requiredQuantity < available_quantity ? true : false}
                     />
                 </form>
 
