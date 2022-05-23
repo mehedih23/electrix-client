@@ -1,18 +1,43 @@
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { ClipLoader } from 'react-spinners';
 import auth from '../../firebase.init';
 
 const MyReviews = () => {
     // from form-hook //
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
-    const [user] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
+
+    if (loading) {
+        return <div className='h-screen flex justify-center items-center'>
+            <ClipLoader loading={loading} size={150} />
+        </div>
+    }
 
 
     const onSubmit = data => {
-        console.log(data)
-
+        const name = data.name;
+        const email = data.email;
+        const review = data.review;
+        const rating = data.ratings;
+        const testimonial = { name, email, review, rating }
+        fetch('http://localhost:1111/review', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(testimonial)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    reset();
+                    toast.success('Review post successfully.')
+                }
+            })
     };
     return (
         <div className='p-2 md:p-4 lg:p-8'>
@@ -52,8 +77,8 @@ const MyReviews = () => {
                                 message: 'Quote is required'
                             },
                             minLength: {
-                                value: 100,
-                                message: 'Must be 100 character or longer'
+                                value: 25,
+                                message: 'Must be 25 character or longer'
                             }
                         })}
                         placeholder="Type here"
@@ -90,7 +115,7 @@ const MyReviews = () => {
                         {errors.ratings?.type === 'max' && <span className="label-text-alt text-sm text-red-600">{errors.ratings.message}</span>}
                     </label>
 
-                    <input type="submit" value="Register" className='btn btn-active  w-72 md:w-80 lg:w-96 mt-3' />
+                    <input type="submit" value="Post" className='btn btn-active  w-72 md:w-80 lg:w-96 mt-3' />
                 </form>
             </div>
         </div>

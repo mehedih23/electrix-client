@@ -122,7 +122,7 @@ const Purchase = () => {
                         className="input input-bordered w-full max-w-xs"
                     />
                     <label className="label">
-                        <span class="label-text-alt text-red-600">{ }</span>;
+                        <span className="label-text-alt text-red-600">{ }</span>;
                     </label>
 
 
@@ -152,7 +152,7 @@ const Purchase = () => {
                         className="input input-bordered w-full max-w-xs"
                     />
                     <label className="label">
-                        <span class="label-text-alt text-red-600">{ }</span>;
+                        <span className="label-text-alt text-red-600">{ }</span>;
                     </label>
 
 
