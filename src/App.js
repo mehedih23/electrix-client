@@ -16,6 +16,7 @@ import MyOrders from './Pages/Dashboard/MyOrders';
 import MyReviews from './Pages/Dashboard/MyReviews';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import { Toaster } from 'react-hot-toast';
+import Payment from './Pages/Dashboard/Payment';
 
 function App() {
   useEffect(() => {
@@ -32,18 +33,23 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home></Home>}></Route>
+
           <Route path='/purchase/:id' element={<RequireAuth>
             <Purchase></Purchase>
           </RequireAuth>}></Route>
+
           <Route path='/security' element={<Security></Security>}>
             <Route index element={<Login></Login>}></Route>
             <Route path='/security/signup' element={<Signup></Signup>}></Route>
           </Route>
+
           <Route path='/dashboard' element={<Dashboard></Dashboard>}>
             <Route index element={<MyOrders></MyOrders>}></Route>
             <Route path='/dashboard/reviews' element={<MyReviews></MyReviews>}></Route>
             <Route path='/dashboard/profile' element={<MyProfile></MyProfile>}></Route>
+            <Route path='/dashboard/payment/:id' element={<Payment></Payment>}></Route>
           </Route>
+
         </Routes>
 
 

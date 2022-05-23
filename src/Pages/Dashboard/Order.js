@@ -1,7 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 const Order = ({ order, index, refetch }) => {
+    const navigate = useNavigate()
     const { _id, email, productName, orderQuantity, total } = order;
 
     const handleDelete = () => {
@@ -46,7 +48,7 @@ const Order = ({ order, index, refetch }) => {
             <td>${total}</td>
             <td>
                 <button
-
+                    onClick={() => navigate(`/dashboard/payment/${_id}`)}
                     className='btn btn-accent btn-sm'
                 >Pay</button>  <button
                     onClick={handleDelete}
