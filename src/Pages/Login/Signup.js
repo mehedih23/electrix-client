@@ -5,6 +5,7 @@ import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { ClipLoader } from 'react-spinners';
 import toast from 'react-hot-toast';
+import useToken from '../../hooks/useToken';
 
 
 
@@ -22,16 +23,18 @@ const Signup = () => {
     const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
 
     let location = useLocation();
-    let from = location.state?.from?.pathname || "/";
     let navigate = useNavigate();
+    const [token] = useToken(user || userGoogle)
+
+    let from = location.state?.from?.pathname || "/";
 
 
     // users //
     useEffect(() => {
-        if (user || userGoogle) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [from, navigate, user, userGoogle])
+    }, [from, navigate, token])
 
 
     // loadings //
