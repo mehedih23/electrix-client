@@ -7,7 +7,7 @@ import auth from '../../firebase.init';
 
 const Order = ({ order, index, refetch }) => {
     const navigate = useNavigate()
-    const { _id, email, productName, orderQuantity, total, paid, transactionId } = order;
+    const { _id, email, productName, orderQuantity, total, paid, transactionId, status } = order;
 
     const handleDelete = () => {
         Swal.fire({
@@ -61,10 +61,15 @@ const Order = ({ order, index, refetch }) => {
             <td>{orderQuantity}</td>
             <td>${total}</td>
             <td>
-                {paid ? <>
+                {paid && status === 'pending' && <>
                     <p className='font-bold text-green-500'>Paid</p>
                     <p className='font-bold text-green-500'>TrxId : {transactionId}</p>
-                </> : <>
+                </>}
+                {paid && status === 'shipped' && <>
+                    <p className='font-bold text-green-500'>{status}</p>
+                    <p className='font-bold text-green-500'>TrxId : {transactionId}</p>
+                </>}
+                {!paid && <>
                     <button
                         onClick={() => navigate(`/dashboard/payment/${_id}`)}
                         className='btn btn-accent btn-sm'
@@ -75,7 +80,7 @@ const Order = ({ order, index, refetch }) => {
                 </>
                 }
             </td>
-        </tr>
+        </tr >
     )
 }
 

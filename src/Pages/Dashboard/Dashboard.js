@@ -57,11 +57,14 @@ const Dashboard = () => {
                     }
 
 
-                    {admin && user && <>
-                        <li><Link to='/dashboard/users'>All User</Link></li>
-                        {/* <li><Link to='/dashboard/add-doctor'>Add a Doctor</Link></li>
-                        <li><Link to='/dashboard/manage-doctor'>Manage Doctor</Link></li> */}
-                    </>}
+                    {
+                        admin && user && <>
+                            <li><Link to='/dashboard/users'>All User</Link></li>
+                            <li><Link to='/dashboard/manage-all-order'>Manage Orders</Link></li>
+                            <li><Link to='/dashboard/manage-tool'>Manage Tools</Link></li>
+                            <li><Link to='/dashboard/add-tool'>Add a Tool</Link></li>
+                        </>
+                    }
                 </ul>
 
             </div>

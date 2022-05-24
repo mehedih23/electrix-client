@@ -19,6 +19,9 @@ import { Toaster } from 'react-hot-toast';
 import Payment from './Pages/Dashboard/Payment';
 import AllUsers from './Pages/Dashboard/AllUsers';
 import RequireAdmin from './Pages/Login/RequireAdmin';
+import AddTool from './Pages/Dashboard/AddTool';
+import ManageTools from './Pages/Dashboard/ManageTools';
+import ManageOrders from './Pages/Dashboard/ManageOrders';
 
 function App() {
   useEffect(() => {
@@ -50,6 +53,9 @@ function App() {
           </RequireAuth>}>
             <Route index element={<MyProfile></MyProfile>}></Route>
             <Route path='/dashboard/order' element={<MyOrders></MyOrders>}></Route>
+            <Route path='/dashboard/add-tool' element={<AddTool></AddTool>}></Route>
+            <Route path='/dashboard/manage-tool' element={<ManageTools></ManageTools>}></Route>
+            <Route path='/dashboard/manage-all-order' element={<ManageOrders></ManageOrders>}></Route>
             <Route path='/dashboard/reviews' element={<MyReviews></MyReviews>}></Route>
             <Route path='/dashboard/payment/:id' element={<Payment></Payment>}></Route>
             <Route path='/dashboard/users' element={<RequireAdmin>
