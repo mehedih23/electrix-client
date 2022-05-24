@@ -1,10 +1,22 @@
 import React from 'react'
-// import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom'
-// import auth from '../../firebase.init';
+import { ClipLoader } from 'react-spinners';
+import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
 
 const Dashboard = () => {
-    // const [user] = useAuthState(auth)
+    const [user, loading] = useAuthState(auth)
+    const [admin] = useAdmin(user);
+
+    // loadings //
+    if (loading) {
+        return <div className='h-screen flex justify-center items-center'>
+            <ClipLoader loading={loading} size={150} />
+        </div>
+    }
+
+
 
     return (
         <div className="drawer drawer-mobile">
@@ -37,11 +49,11 @@ const Dashboard = () => {
                     <li><Link to='/dashboard'>My Orders</Link></li>
                     <li><Link to='/dashboard/reviews'>Add Review</Link></li>
                     <li><Link to='/dashboard/profile'>My Profile</Link></li>
-                    <li><Link to='/dashboard/users'>All User</Link></li>
-                    {/* {admin && <>
-                        <li><Link to='/dashboard/add-doctor'>Add a Doctor</Link></li>
-                        <li><Link to='/dashboard/manage-doctor'>Manage Doctor</Link></li>
-                    </>} */}
+                    {admin && <>
+                        <li><Link to='/dashboard/users'>All User</Link></li>
+                        {/* <li><Link to='/dashboard/add-doctor'>Add a Doctor</Link></li>
+                        <li><Link to='/dashboard/manage-doctor'>Manage Doctor</Link></li> */}
+                    </>}
                 </ul>
 
             </div>

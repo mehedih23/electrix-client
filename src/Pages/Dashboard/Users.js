@@ -7,9 +7,33 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Users = ({ user, index, refetch }) => {
-    const { _id, email, userName } = user;
+    const { _id, email, userName, role } = user;
 
     const navigate = useNavigate()
+
+
+    const handleUpdate = () => {
+        fetch(`http://localhost:1111/user/admin/${email}`, {
+            method: 'PUT',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
+            }
+        })
+            .then(response => {
+                if (response.status === 403) {
+                    toast.error("Can't be an admin", { id: 'admin-error' })
+                } else {
+                    return response.json()
+                }
+            })
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    refetch();
+                    toast.success('Make admin successfully', { id: 'admin-success' })
+                }
+            })
+    }
+
 
     const handleDelete = () => {
         Swal.fire({
@@ -59,13 +83,16 @@ const Users = ({ user, index, refetch }) => {
             <td>{userName || <span className='text-red-500 font-bold'>Not Updated</span>}</td>
             <td>{email}</td>
             <td>
-                <button
-
-                    className='btn btn-sm btn-outline btn-primary'
-                >Make Admin</button> <button
-                    onClick={handleDelete}
-                    className='btn btn-sm btn-error'
-                >Remove</button>
+                {role ? <span className='text-accent font-bold text-xl'>Admin</span> : <>
+                    <button
+                        onClick={handleUpdate}
+                        className='btn btn-sm btn-outline btn-primary'
+                    >Make Admin</button> <button
+                        onClick={handleDelete}
+                        className='btn btn-sm btn-error'
+                    >Remove</button>
+                </>
+                }
             </td>
         </tr>
     )
