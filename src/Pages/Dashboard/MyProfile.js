@@ -9,21 +9,25 @@ import auth from '../../firebase.init';
 const MyProfile = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [users, setUsers] = useState({})
+    const [userLoading, setUserLoading] = useState(true);
     const [user, loading] = useAuthState(auth);
-
+    console.log(users?.streetAddress);
 
     useEffect(() => {
         fetch(`http://localhost:1111/user?email=${user?.email}`)
             .then(response => response.json())
-            .then(data => setUsers(data))
+            .then(data => {
+                setUsers(data)
+                setUserLoading(false)
+            })
     }, [setUsers, user?.email])
 
 
 
     // loadings //
-    if (loading) {
+    if (loading || userLoading) {
         return <div className='h-screen flex justify-center items-center'>
-            <ClipLoader loading={loading} size={150} />
+            <ClipLoader loading={loading || userLoading} size={150} />
         </div>
     }
 
@@ -37,7 +41,7 @@ const MyProfile = () => {
         const postOffice = data.po;
         const postCode = data.pc;
         const education = data.education;
-        const linkedInLink = data.linkedIn;
+        const linkedInLink = data.linkedin;
         const user = {
             userName,
             phone,
@@ -111,6 +115,7 @@ const MyProfile = () => {
                         }
                     })}
                     placeholder="Type here"
+                    defaultValue={users?.phone || ' '}
                     className="input input-bordered w-full max-w-xs" />
                 <label className="label">
                     {errors.phone?.type === 'required' && <span className="label-text-alt text-sm text-red-600">{errors.phone.message}</span>}
@@ -129,7 +134,8 @@ const MyProfile = () => {
                             message: 'City is required'
                         }
                     })}
-
+                    placeholder="Type here"
+                    defaultValue={users?.city || null}
                     className="input input-bordered w-full max-w-xs" />
                 <label className="label">
                     {errors.city?.type === 'required' && <span className="label-text-alt text-sm text-red-600">{errors.city.message}</span>}
@@ -146,7 +152,8 @@ const MyProfile = () => {
                             message: 'Post Office is required'
                         }
                     })}
-
+                    placeholder="Type here"
+                    defaultValue={users?.postOffice || null}
                     className="input input-bordered w-full max-w-xs" />
                 <label className="label">
                     {errors.po?.type === 'required' && <span className="label-text-alt text-sm text-red-600">{errors.po.message}</span>}
@@ -171,7 +178,8 @@ const MyProfile = () => {
                             message: 'Must Be 4 digit post code'
                         }
                     })}
-
+                    placeholder="Type here"
+                    defaultValue={users?.postCode || null}
                     className="input input-bordered w-full max-w-xs" />
                 <label className="label">
                     {errors.pc?.type === 'required' && <span className="label-text-alt text-sm text-red-600">{errors.pc.message}</span>}
@@ -190,7 +198,8 @@ const MyProfile = () => {
                             message: 'Street Address is required'
                         }
                     })}
-
+                    placeholder="Type here"
+                    defaultValue={users?.streetAddress || null}
                     className="input input-bordered w-full max-w-xs" />
                 <label className="label">
                     {errors.sa?.type === 'required' && <span className="label-text-alt text-sm text-red-600">{errors.sa.message}</span>}
@@ -207,7 +216,8 @@ const MyProfile = () => {
                             message: 'Education is required'
                         }
                     })}
-
+                    placeholder="Type here"
+                    defaultValue={users?.education || null}
                     className="input input-bordered w-full max-w-xs" />
                 <label className="label">
                     {errors.education?.type === 'required' && <span className="label-text-alt text-sm text-red-600">{errors.education.message}</span>}
@@ -224,7 +234,8 @@ const MyProfile = () => {
                             message: 'LinkedIn Link is required'
                         }
                     })}
-
+                    placeholder="Type here"
+                    defaultValue={users?.linkedInLink || null}
                     className="input input-bordered w-full max-w-xs" />
                 <label className="label">
                     {errors.linkedin?.type === 'required' && <span className="label-text-alt text-sm text-red-600">{errors.linkedin.message}</span>}

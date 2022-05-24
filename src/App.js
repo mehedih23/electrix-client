@@ -18,6 +18,7 @@ import MyProfile from './Pages/Dashboard/MyProfile';
 import { Toaster } from 'react-hot-toast';
 import Payment from './Pages/Dashboard/Payment';
 import AllUsers from './Pages/Dashboard/AllUsers';
+import RequireAdmin from './Pages/Login/RequireAdmin';
 
 function App() {
   useEffect(() => {
@@ -47,11 +48,13 @@ function App() {
           <Route path='/dashboard' element={<RequireAuth>
             <Dashboard></Dashboard>
           </RequireAuth>}>
-            <Route index element={<MyOrders></MyOrders>}></Route>
+            <Route index element={<MyProfile></MyProfile>}></Route>
+            <Route path='/dashboard/order' element={<MyOrders></MyOrders>}></Route>
             <Route path='/dashboard/reviews' element={<MyReviews></MyReviews>}></Route>
-            <Route path='/dashboard/profile' element={<MyProfile></MyProfile>}></Route>
             <Route path='/dashboard/payment/:id' element={<Payment></Payment>}></Route>
-            <Route path='/dashboard/users' element={<AllUsers></AllUsers>}></Route>
+            <Route path='/dashboard/users' element={<RequireAdmin>
+              <AllUsers></AllUsers>
+            </RequireAdmin>}></Route>
           </Route>
 
         </Routes>
