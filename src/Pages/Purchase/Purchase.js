@@ -14,10 +14,23 @@ const Purchase = () => {
 
     const { name, image, description, price, min_order, available_quantity } = tool;
     useEffect(() => {
-        fetch(`http://localhost:1111/tool/${id}`)
-            .then(response => response.json())
+        fetch(`http://localhost:1111/tool/${id}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
+            }
+        })
+            .then(response => {
+                if (response.status === 401 || response.status === 403) {
+                    signOut(auth);
+                    toast.error('Token expired', { id: 'Token-error' })
+                    navigate('/')
+                } else {
+                    return response.json()
+                }
+            })
             .then(data => setTool(data))
-    }, [id])
+    }, [id, navigate])
 
 
     const handlePlaceOrder = (e) => {
@@ -58,7 +71,7 @@ const Purchase = () => {
                 .then(response => {
                     if (response.status === 401 || response.status === 403) {
                         signOut(auth);
-                        toast.error('Login session expired', { id: 'session-error' })
+                        toast.error('Token expired', { id: 'token-error' });
                         navigate('/')
                     } else {
                         return response.json()

@@ -1,5 +1,6 @@
 import { signOut } from 'firebase/auth';
 import React from 'react'
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import auth from '../../firebase.init';
@@ -33,6 +34,7 @@ const Order = ({ order, index, refetch }) => {
                         .then(response => {
                             if (response.status === 401 || response.status === 403) {
                                 signOut(auth);
+                                toast.error('Token expired', { id: 'token-error' });
                                 navigate('/');
                             } else {
                                 return response.json()

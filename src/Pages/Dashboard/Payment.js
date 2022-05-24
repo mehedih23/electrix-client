@@ -3,6 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { signOut } from 'firebase/auth';
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners';
@@ -27,6 +28,7 @@ const Payment = () => {
         }).then(res => {
             if (res.status === 401 || res.status === 403) {
                 signOut(auth);
+                toast.error('Token expired', { id: 'token-error' });
                 navigate('/');
             } else {
                 return res.json()

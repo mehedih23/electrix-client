@@ -9,10 +9,10 @@ const Dashboard = () => {
     return (
         <div className="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
+            <div className="drawer-content my-8">
                 <div className='flex justify-between lg:block'>
                     <h3 className='text-3xl text-center text-secondary font-bold'>Dashboard</h3>
-                    <label for="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden">
+                    <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"
@@ -32,7 +32,7 @@ const Dashboard = () => {
                 <Outlet></Outlet>
             </div>
             <div className="drawer-side">
-                <label for="my-drawer-2" className="drawer-overlay"></label>
+                <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 overflow-y-auto w-60 bg-base-100 text-base-content">
                     <li><Link to='/dashboard'>My Orders</Link></li>
                     <li><Link to='/dashboard/reviews'>Add Review</Link></li>

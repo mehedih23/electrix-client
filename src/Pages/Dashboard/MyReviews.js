@@ -39,6 +39,7 @@ const MyReviews = () => {
             .then(response => {
                 if (response.status === 401 || response.status === 403) {
                     signOut(auth);
+                    toast.error('Token expired', { id: 'token-error' });
                     navigate('/');
                 } else {
                     return response.json()
