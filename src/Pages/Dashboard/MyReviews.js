@@ -1,11 +1,15 @@
+import { signOut } from 'firebase/auth';
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import auth from '../../firebase.init';
 
 const MyReviews = () => {
+    const navigate = useNavigate();
+
     // from form-hook //
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
@@ -27,11 +31,19 @@ const MyReviews = () => {
         fetch('http://localhost:1111/review', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
             },
             body: JSON.stringify(testimonial)
         })
-            .then(response => response.json())
+            .then(response => {
+                if (response.status === 401 || response.status === 403) {
+                    signOut(auth);
+                    navigate('/');
+                } else {
+                    return response.json()
+                }
+            })
             .then(data => {
                 if (data.acknowledged) {
                     reset();

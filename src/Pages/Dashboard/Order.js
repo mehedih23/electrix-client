@@ -1,6 +1,8 @@
+import { signOut } from 'firebase/auth';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import auth from '../../firebase.init';
 
 const Order = ({ order, index, refetch }) => {
     const navigate = useNavigate()
@@ -23,9 +25,19 @@ const Order = ({ order, index, refetch }) => {
                     'Your item has been deleted.',
                     'success',
                     fetch(`http://localhost:1111/order/${_id}`, {
-                        method: 'DELETE'
+                        method: 'DELETE',
+                        headers: {
+                            'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
+                        }
                     })
-                        .then(response => response.json())
+                        .then(response => {
+                            if (response.status === 401 || response.status === 403) {
+                                signOut(auth);
+                                navigate('/');
+                            } else {
+                                return response.json()
+                            }
+                        })
                         .then(data => {
                             if (data.acknowledged) {
                                 refetch();

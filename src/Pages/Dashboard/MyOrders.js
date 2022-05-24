@@ -1,16 +1,30 @@
+import { signOut } from 'firebase/auth';
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import auth from '../../firebase.init'
 import Order from './Order';
 
 const MyOrders = () => {
+    const navigate = useNavigate();
     const [user, loading] = useAuthState(auth);
 
     const { isLoading, error, data: orders, refetch } = useQuery('myOrders', () =>
-        fetch(`http://localhost:1111/order?email=${user?.email}`).then(res =>
-            res.json()
+        fetch(`http://localhost:1111/order?email=${user?.email}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
+            }
+        }).then(res => {
+            if (res.status === 401 || res.status === 403) {
+                signOut(auth);
+                navigate('/');
+            } else {
+                return res.json()
+            }
+        }
         )
     )
 

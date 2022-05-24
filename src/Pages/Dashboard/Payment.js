@@ -1,9 +1,10 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { signOut } from 'firebase/auth';
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners';
 import auth from '../../firebase.init';
 import CheckoutForm from './CheckoutForm';
@@ -12,13 +13,25 @@ import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe('pk_test_51L0dEWCZgoTM5Tayhs4p1lO2REirHqdBn34Pp0fPfvRzKZgv6ZnfqcGGGJ9l0iaigflrjz4TXdy8nEdsGufjPyTw008RZYfrLE');
 
 const Payment = () => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [user, loading] = useAuthState(auth);
 
 
     const { isLoading, error, data: item } = useQuery(['payment', id], () =>
-        fetch(`http://localhost:1111/order/${id}`).then(res =>
-            res.json()
+        fetch(`http://localhost:1111/order/${id}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
+            }
+        }).then(res => {
+            if (res.status === 401 || res.status === 403) {
+                signOut(auth);
+                navigate('/');
+            } else {
+                return res.json()
+            }
+        }
         )
     )
 

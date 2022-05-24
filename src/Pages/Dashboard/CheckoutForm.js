@@ -1,7 +1,11 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const CheckoutForm = ({ item }) => {
+    const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
@@ -14,17 +18,25 @@ const CheckoutForm = ({ item }) => {
         fetch('http://localhost:1111/create-payment-intent', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
             },
             body: JSON.stringify({ price: total })
         })
-            .then(response => response.json())
+            .then(response => {
+                if (response.status === 401 || response.status === 403) {
+                    signOut(auth);
+                    navigate('/');
+                } else {
+                    return response.json()
+                }
+            })
             .then(data => {
                 if (data?.clientSecret) {
                     setClientSecret(data.clientSecret)
                 }
             })
-    }, [total])
+    }, [navigate, total])
 
 
     const handleSubmit = async (e) => {

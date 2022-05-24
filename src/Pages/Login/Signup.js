@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { ClipLoader } from 'react-spinners';
@@ -23,7 +23,16 @@ const Signup = () => {
     const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] = useSignInWithGoogle(auth);
 
     let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     const [token] = useToken(user || userGoogle)
+
+    // users //
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [from, navigate, token, user, userGoogle])
 
     // loadings //
     if (loading || updating || loadingGoogle) {
@@ -38,12 +47,6 @@ const Signup = () => {
         signInError = <span className='text-sm text-red-600'>{errorCreate?.message || errorUpdate?.message || errorGoogle?.message}</span>
     }
 
-
-
-    // users //
-    if (token) {
-        navigate('/');
-    }
 
     const onSubmit = async data => {
         const name = data.name;

@@ -1,10 +1,12 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import auth from '../../firebase.init';
 
 const Purchase = () => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [tool, setTool] = useState({});
     const [user] = useAuthState(auth);
@@ -48,15 +50,24 @@ const Purchase = () => {
             fetch('http://localhost:1111/order', {
                 method: 'POST',
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
                 },
                 body: JSON.stringify(order)
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (response.status === 401 || response.status === 403) {
+                        signOut(auth);
+                        toast.error('Login session expired', { id: 'session-error' })
+                        navigate('/')
+                    } else {
+                        return response.json()
+                    }
+                })
                 .then(data => {
                     if (data.acknowledged) {
                         e.target.reset();
-                        toast.success('Order complete successfully.', { id: 'order-success' })
+                        toast.success('Order complete successfully', { id: 'order-success' })
                     }
                 })
         }
