@@ -99,17 +99,17 @@ const Login = () => {
                 {/* password field end */}
 
                 {/* forgot password start */}
-                <p><Link to='/forgot-password' className='text-sm underline text-secondary'>Forgot Password?</Link></p>
+                <p><Link to='/forgot-password' className='text-sm underline text-primary'>Forgot Password?</Link></p>
                 {/* forgot password end */}
-                <input type="submit" value="Login" className='btn btn-active  w-72 md:w-80 lg:w-96 mt-3' />
+                <input type="submit" value="Login" className='btn btn-active w-72 md:w-80 lg:w-96 mt-3' />
             </form>
             {signInError}
 
-            <p className='my-4'>New to Doctors Portal? <Link to='/security/signup' className='text-secondary font-bold'>Create an account</Link></p>
+            <p className='my-4'>New to Doctors Portal? <Link to='/security/signup' className='text-primary font-bold'>Create an account</Link></p>
             <div className="divider mb-4">OR</div>
             <button
                 onClick={() => signInWithGoogle()}
-                className='btn btn-outline w-72 md:w-80 lg:w-96 btn-accent'
+                className='btn btn-outline w-72 md:w-80 lg:w-96 btn-accent shadow-lg shadow-green-400'
             >CONTINUE WITH GOOGLE
             </button>
         </div>

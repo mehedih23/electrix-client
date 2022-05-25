@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { ClipLoader } from 'react-spinners';
-import auth from '../../firebase.init'
+
 
 const Reviews = () => {
-    const [user, loading] = useAuthState(auth);
     const [reviews, setReviews] = useState([])
     useEffect(() => {
         fetch('http://localhost:1111/review')
@@ -12,16 +9,8 @@ const Reviews = () => {
             .then(data => setReviews(data))
     }, []);
 
-
-    if (loading) {
-        return <div className='h-screen flex justify-center items-center'>
-            <ClipLoader loading={loading} size={150} />
-        </div>
-    }
-
     return (
         <div className='my-12'>
-            {/* heading */}
             <div className='text-center'>
                 <h1 className='text-5xl text-accent'>Testimonials</h1>
             </div>
@@ -31,40 +20,29 @@ const Reviews = () => {
                 <h2 className='text-4xl font-bold my-2'>from us ... </h2>
             </div>
 
-            <div className="carousel w-full">
+            <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-5'>
                 {
-                    reviews.map((rev, index) => <div key={rev._id} id={`item${index + 1}`} className="carousel-item w-full">
-                        <div className='w-3/4 m-auto flex flex-col justify-center items-center'>
-                            {
-                                user?.photoURL === null ? <>
-                                    <div className="avatar placeholder my-4">
-                                        <div className="bg-neutral-focus text-neutral-content rounded-full w-24">
-                                            <span className='text-3xl'>{rev.name.slice(0, 1)}</span>
-                                        </div>
+                    reviews.map(review => <div
+                        key={review._id}
+                        class="card bg-base-100 shadow-xl shadow-green-500/50">
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                <div class="avatar placeholder mr-2">
+                                    <div class="bg-neutral-focus text-neutral-content rounded-full w-12">
+                                        <span>{review.name.slice(0, 1).toUpperCase()}</span>
                                     </div>
-                                </> : <>
-                                    <div className="avatar my-6">
-                                        <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                            <img src={user?.photoURL} alt={user?.displayName} />
-                                        </div>
-                                    </div>
-                                </>
-                            }
-                            <p className='text-xl mb-6'>{rev.name}</p>
-                            <p className='text-center'>{rev.review}</p>
-                            <p className='text-purple-600 font-bold my-4'>Ratings : {rev.rating} out of 5</p>
+                                </div>
+                                {review.name}
+                            </h2>
+                            <p>{review.review}</p>
+                            <p className='font-bold flex'>Ratings: {review.rating}<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 text-rose-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            </p>
                         </div>
                     </div>)
                 }
             </div>
-            <div className="flex justify-center w-full py-2 gap-2">
-                {
-                    reviews.map((rev, index) => <a key={rev._id} href={`#item${index + 1}`} className="btn btn-xs">{index + 1}</a>)
-                }
-            </div>
-
-
-
 
         </div >
     )

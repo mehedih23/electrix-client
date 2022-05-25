@@ -3,7 +3,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'not-found': "url('https://i.ibb.co/X2q07fj/Untitled-design-1.gif')"
+      }
+    },
   },
   daisyui: {
     themes: [

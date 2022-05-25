@@ -4,9 +4,9 @@ const Summary = () => {
     return (
         <div className='my-28'>
             <h1 className='text-5xl text-center text-accent'>Millions Clients Trust Us</h1>
-            <p className='uppercase text-center my-3 text-2xl text-secondary'>Try to understand users expectation</p>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-5 lg:gap-10'>
-                <div className="card md:max-w-md lg:max-w-lg bg-base-100 shadow-xl">
+            <p className='uppercase text-center my-3 text-2xl text-primary'>Try to understand users expectation</p>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-10'>
+                <div className="card md:max-w-md lg:max-w-lg bg-base-100 shadow-xl shadow-green-500/50">
                     <div className="card-body text-center">
                         <h2 className='text-2xl'>Supply In</h2>
                         <p className='flex justify-center items-center text-3xl'>150+ <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-6 ml-2' viewBox="0 0 512 512">
@@ -16,7 +16,7 @@ const Summary = () => {
                     </div>
                 </div>
 
-                <div className="card md:max-w-md lg:max-w-lg bg-base-100 shadow-xl">
+                <div className="card md:max-w-md lg:max-w-lg bg-base-100 shadow-xl shadow-green-500/50">
                     <div className="card-body text-center">
                         <h2 className='text-2xl'>Clients</h2>
                         <p className='flex justify-center items-center text-3xl'>370K+
@@ -26,7 +26,7 @@ const Summary = () => {
                     </div>
                 </div>
 
-                <div className="card md:max-w-md lg:max-w-lg bg-base-100 shadow-xl">
+                <div className="card md:max-w-md lg:max-w-lg bg-base-100 shadow-xl shadow-green-500/50">
                     <div className="card-body text-center">
                         <h2 className='text-2xl'>Orders</h2>
                         <p className='flex justify-center items-center text-3xl'>1.2M
@@ -37,7 +37,7 @@ const Summary = () => {
                     </div>
                 </div>
 
-                <div className="card md:max-w-md lg:max-w-lg bg-base-100 shadow-xl">
+                <div className="card md:max-w-md lg:max-w-lg bg-base-100 shadow-xl shadow-green-500/50">
                     <div className="card-body text-center">
                         <h2 className='text-2xl'>Position In</h2>
                         <p className='flex justify-center items-center text-3xl'>Top-10

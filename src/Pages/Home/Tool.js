@@ -7,7 +7,7 @@ const Tool = ({ tool }) => {
     const { _id, name, image, description, price, min_order, available_quantity } = tool;
 
     return (
-        <div className="card w-96 bg-base-100 shadow-2xl">
+        <div className="card w-96 bg-base-100 shadow-xl shadow-green-500/50">
             <figure><img src={image} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
@@ -18,7 +18,7 @@ const Tool = ({ tool }) => {
                 <div className="card-actions justify-end">
                     <button
                         onClick={() => navigate(`/purchase/${_id}`)}
-                        className="btn btn-primary">
+                        className="btn btn-primary shadow-lg shadow-green-400">
                         Buy Now
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />

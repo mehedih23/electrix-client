@@ -23,7 +23,7 @@ const Dashboard = () => {
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content my-8">
                 <div className='flex justify-between lg:block'>
-                    <h3 className='text-3xl text-center text-secondary font-bold'>Dashboard</h3>
+                    <h3 className='text-3xl text-center text-primary font-bold'>Dashboard</h3>
                     <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

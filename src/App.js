@@ -23,6 +23,8 @@ import AddTool from './Pages/Dashboard/AddTool';
 import ManageTools from './Pages/Dashboard/ManageTools';
 import ManageOrders from './Pages/Dashboard/ManageOrders';
 import Blog from './Pages/Blog/Blog';
+import NotFound from './Pages/Shared/NotFound';
+import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
 
 function App() {
   useEffect(() => {
@@ -64,7 +66,11 @@ function App() {
             </RequireAdmin>}></Route>
           </Route>
           <Route path='/blog' element={<Blog></Blog>}></Route>
+          <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
 
+
+
+          <Route path='*' element={<NotFound></NotFound>}></Route>
         </Routes>
 
 
