@@ -4,14 +4,15 @@ import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import { ClipLoader } from 'react-spinners';
 import auth from '../../firebase.init';
+import { useNavigate } from 'react-router-dom';
 
 
 const MyProfile = () => {
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const [users, setUsers] = useState({})
     const [userLoading, setUserLoading] = useState(true);
     const [user, loading] = useAuthState(auth);
-    console.log(users?.streetAddress);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://localhost:1111/user?email=${user?.email}`)
@@ -65,7 +66,7 @@ const MyProfile = () => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     toast.success("Information update successfully.", { id: 'update-info' })
-                    reset();
+                    navigate('/')
                 }
             })
 
