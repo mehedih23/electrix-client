@@ -22,6 +22,7 @@ import RequireAdmin from './Pages/Login/RequireAdmin';
 import AddTool from './Pages/Dashboard/AddTool';
 import ManageTools from './Pages/Dashboard/ManageTools';
 import ManageOrders from './Pages/Dashboard/ManageOrders';
+import Blog from './Pages/Blog/Blog';
 
 function App() {
   useEffect(() => {
@@ -62,6 +63,7 @@ function App() {
               <AllUsers></AllUsers>
             </RequireAdmin>}></Route>
           </Route>
+          <Route path='/blog' element={<Blog></Blog>}></Route>
 
         </Routes>
 
