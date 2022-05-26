@@ -24,7 +24,7 @@ const AddTool = () => {
         if (parseInt(min_order) > parseInt(available_quantity) || parseInt(min_order) === parseInt(available_quantity)) {
             toast.error('You have to manufacture more than min quantity you set', { id: 'min-q' })
         } else {
-            fetch('http://localhost:1111/tool', {
+            fetch('https://limitless-headland-17774.herokuapp.com/tool', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

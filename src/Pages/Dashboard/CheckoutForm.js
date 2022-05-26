@@ -16,7 +16,7 @@ const CheckoutForm = ({ item }) => {
     const { _id, total, email, customerName, productName } = item;
 
     useEffect(() => {
-        fetch('http://localhost:1111/create-payment-intent', {
+        fetch('https://limitless-headland-17774.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -90,7 +90,7 @@ const CheckoutForm = ({ item }) => {
                 transactionId: paymentIntent.id
             }
 
-            fetch(`http://localhost:1111/order/${_id}`, {
+            fetch(`https://limitless-headland-17774.herokuapp.com/order/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json'

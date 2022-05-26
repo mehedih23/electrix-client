@@ -8,7 +8,7 @@ const useToken = (data) => {
         const currentEmail = { email: email };
         if (email) {
 
-            fetch(`http://localhost:1111/user/${email}`, {
+            fetch(`https://limitless-headland-17774.herokuapp.com/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

@@ -15,7 +15,7 @@ const MyProfile = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:1111/user?email=${user?.email}`)
+        fetch(`https://limitless-headland-17774.herokuapp.com/user?email=${user?.email}`)
             .then(response => response.json())
             .then(data => {
                 setUsers(data)
@@ -54,7 +54,7 @@ const MyProfile = () => {
             linkedInLink
         }
 
-        fetch(`http://localhost:1111/user/${users?._id}`, {
+        fetch(`https://limitless-headland-17774.herokuapp.com/user/${users?._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

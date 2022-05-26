@@ -20,7 +20,7 @@ const Payment = () => {
 
 
     const { isLoading, error, data: item } = useQuery(['payment', id], () =>
-        fetch(`http://localhost:1111/order/${id}`, {
+        fetch(`https://limitless-headland-17774.herokuapp.com/order/${id}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('Access-Token')}`

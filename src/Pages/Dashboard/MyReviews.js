@@ -28,7 +28,7 @@ const MyReviews = () => {
         const review = data.review;
         const rating = data.ratings;
         const testimonial = { name, email, review, rating }
-        fetch('http://localhost:1111/review', {
+        fetch('https://limitless-headland-17774.herokuapp.com/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

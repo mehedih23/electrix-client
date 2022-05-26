@@ -14,7 +14,7 @@ const AllUsers = () => {
 
 
     const { isLoading, error, data: users, refetch } = useQuery('users', () =>
-        fetch(`http://localhost:1111/users`, {
+        fetch(`https://limitless-headland-17774.herokuapp.com/users`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('Access-Token')}`

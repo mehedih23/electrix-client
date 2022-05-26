@@ -13,7 +13,7 @@ const MyOrders = () => {
     const [user, loading] = useAuthState(auth);
 
     const { isLoading, error, data: orders, refetch } = useQuery('myOrders', () =>
-        fetch(`http://localhost:1111/order?email=${user?.email}`, {
+        fetch(`https://limitless-headland-17774.herokuapp.com/order?email=${user?.email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('Access-Token')}`

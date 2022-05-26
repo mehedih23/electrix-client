@@ -10,7 +10,7 @@ import ManageOrdersRow from './ManageOrdersRow';
 const ManageOrders = () => {
     const navigate = useNavigate();
     const { isLoading, error, data: orders, refetch } = useQuery('ManageOrders', () =>
-        fetch(`http://localhost:1111/orders`, {
+        fetch(`https://limitless-headland-17774.herokuapp.com/orders`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('Access-Token')}`

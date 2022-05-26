@@ -25,7 +25,7 @@ const Order = ({ order, index, refetch }) => {
                     'Deleted!',
                     'Your item has been deleted.',
                     'success',
-                    fetch(`http://localhost:1111/order/${_id}`, {
+                    fetch(`https://limitless-headland-17774.herokuapp.com/order/${_id}`, {
                         method: 'DELETE',
                         headers: {
                             'authorization': `Bearer ${localStorage.getItem('Access-Token')}`

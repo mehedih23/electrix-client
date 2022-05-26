@@ -4,7 +4,7 @@ import ManageTool from './ManageTool'
 
 const ManageTools = () => {
     const { isLoading, error, data: tools, refetch } = useQuery('repoData', () =>
-        fetch('http://localhost:1111/tools').then(res =>
+        fetch('https://limitless-headland-17774.herokuapp.com/tools').then(res =>
             res.json()
         )
     )

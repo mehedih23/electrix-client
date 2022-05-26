@@ -14,7 +14,7 @@ const Purchase = () => {
 
     const { name, image, description, price, min_order, available_quantity } = tool;
     useEffect(() => {
-        fetch(`http://localhost:1111/tool/${id}`, {
+        fetch(`https://limitless-headland-17774.herokuapp.com/tool/${id}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
@@ -60,7 +60,7 @@ const Purchase = () => {
         } else if (parseInt(orderQuantity) > parseInt(available_quantity)) {
             toast.error('You can not purchase more piece of items.', { id: 'more' })
         } else {
-            fetch('http://localhost:1111/order', {
+            fetch('https://limitless-headland-17774.herokuapp.com/order', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

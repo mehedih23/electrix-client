@@ -13,7 +13,7 @@ const Users = ({ user, index, refetch }) => {
 
 
     const handleUpdate = () => {
-        fetch(`http://localhost:1111/user/admin/${email}`, {
+        fetch(`https://limitless-headland-17774.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
@@ -51,7 +51,7 @@ const Users = ({ user, index, refetch }) => {
                     'Deleted!',
                     'User Removed Successfully.',
                     'success',
-                    fetch(`http://localhost:1111/users/${_id}`, {
+                    fetch(`https://limitless-headland-17774.herokuapp.com/users/${_id}`, {
                         method: 'DELETE',
                         headers: {
                             'authorization': `Bearer ${localStorage.getItem('Access-Token')}`

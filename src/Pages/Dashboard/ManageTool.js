@@ -23,7 +23,7 @@ const ManageTool = ({ tool, index, refetch }) => {
                     'Deleted!',
                     'Your item has been deleted.',
                     'success',
-                    fetch(`http://localhost:1111/tool/${tool._id}`, {
+                    fetch(`https://limitless-headland-17774.herokuapp.com/tool/${tool._id}`, {
                         method: 'DELETE',
                         headers: {
                             'authorization': `Bearer ${localStorage.getItem('Access-Token')}`

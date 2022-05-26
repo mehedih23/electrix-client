@@ -10,7 +10,7 @@ const ManageOrdersRow = ({ order, index, refetch }) => {
 
     // Update Paid orders //
     const handleUpdate = () => {
-        fetch(`http://localhost:1111/manage/order/${order._id}`, {
+        fetch(`https://limitless-headland-17774.herokuapp.com/manage/order/${order._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -45,7 +45,7 @@ const ManageOrdersRow = ({ order, index, refetch }) => {
                     'Deleted!',
                     'Your item has been deleted.',
                     'success',
-                    fetch(`http://localhost:1111/order/${order._id}`, {
+                    fetch(`https://limitless-headland-17774.herokuapp.com/order/${order._id}`, {
                         method: 'DELETE',
                         headers: {
                             'authorization': `Bearer ${localStorage.getItem('Access-Token')}`
