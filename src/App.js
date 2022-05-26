@@ -25,6 +25,7 @@ import ManageOrders from './Pages/Dashboard/ManageOrders';
 import Blog from './Pages/Blog/Blog';
 import NotFound from './Pages/Shared/NotFound';
 import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
+import Team from './Pages/Home/Team';
 
 function App() {
   useEffect(() => {
@@ -67,6 +68,7 @@ function App() {
           </Route>
           <Route path='/blog' element={<Blog></Blog>}></Route>
           <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
+          <Route path='/team' element={<Team></Team>}></Route>
 
 
 

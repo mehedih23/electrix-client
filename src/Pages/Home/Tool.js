@@ -8,7 +8,9 @@ const Tool = ({ tool }) => {
 
     return (
         <div className="card w-96 bg-base-100 shadow-xl shadow-green-500/50">
-            <figure><img src={image} alt="Shoes" /></figure>
+            <figure className='hover:scale-90 duration-500'>
+                <img src={image} alt="tools" />
+            </figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <p>{description.length > 100 ? description.slice(0, 100) : description}...</p>
