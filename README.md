@@ -25,6 +25,6 @@
 
 ### Technologies Uses for the project
 
--[x] React -[x] React Route Dom -[x] React Hook Form -[x] Firebase -[x] React Firebase Hooks -[x] React Query -[x] React Stripe JS -[x] Stripe -[x] DaisyUi -[x] AOS -[x] React Google Map -[x] Sweetalert2 -[x] React Spinners -[x] EmailJs
+-   [x] React -[x] React Route Dom -[x] React Hook Form -[x] Firebase -[x] React Firebase Hooks -[x] React Query -[x] React Stripe JS -[x] Stripe -[x] DaisyUi -[x] AOS -[x] React Google Map -[x] Sweetalert2 -[x] React Spinners -[x] EmailJs
 
 ### `npm test`
