@@ -17,7 +17,7 @@ const Security = () => {
 
                 </div>
 
-                <div>
+                <div className='hover:scale-90 duration-500'>
                     <img src="https://i.ibb.co/gvgmZkW/20944201.jpg" alt="security" />
                 </div>
             </div>

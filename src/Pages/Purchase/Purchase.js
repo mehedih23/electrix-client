@@ -106,86 +106,88 @@ const Purchase = () => {
 
             </div>
             <div className='my-8'>
-                <h3 className='text-5xl'>Interest In this tool? Click <span className='font-bold text-primary'>Place Order</span></h3>
+                <h3 className='text-5xl text-center'>Interest In this tool? Click <span className='font-bold text-primary'>Place Order</span></h3>
 
-                <form onSubmit={handlePlaceOrder}>
-                    <label className="label">
-                        <span className="label-text">Your Name</span>
-                    </label>
-                    <input
-                        name='name'
-                        defaultValue={user?.displayName}
-                        readOnly
-                        type="text"
-                        placeholder="Type here"
-                        className="input input-bordered w-full max-w-xs"
-                    />
-                    <label className="label"></label>
+                <div className='text-center my-4'>
+                    <form onSubmit={handlePlaceOrder}>
+                        <label className="label max-w-xs mx-auto">
+                            <span className="label-text">Your Name</span>
+                        </label>
+                        <input
+                            name='name'
+                            defaultValue={user?.displayName}
+                            readOnly
+                            type="text"
+                            placeholder="Type here"
+                            className="input input-bordered w-full max-w-xs input-success"
+                        />
+                        <label className="label max-w-xs mx-auto"></label>
 
-                    <label className="label">
-                        <span className="label-text">Your Email</span>
-                    </label>
-                    <input
-                        defaultValue={user?.email}
-                        readOnly
-                        name='email'
-                        type="email"
-                        placeholder="Type here"
-                        className="input input-bordered w-full max-w-xs"
-                    />
-                    <label className="label"></label>
+                        <label className="label max-w-xs mx-auto">
+                            <span className="label-text">Your Email</span>
+                        </label>
+                        <input
+                            defaultValue={user?.email}
+                            readOnly
+                            name='email'
+                            type="email"
+                            placeholder="Type here"
+                            className="input input-bordered w-full max-w-xs input-success"
+                        />
+                        <label className="label max-w-xs mx-auto"></label>
 
-                    <label className="label">
-                        <span className="label-text">Your Phone Number</span>
-                    </label>
-                    <input
-                        required
-                        name='phone'
-                        type="number"
-                        placeholder="Type here"
-                        className="input input-bordered w-full max-w-xs"
-                    />
-                    <label className="label">
-                        <span className="label-text-alt text-red-600">{ }</span>;
-                    </label>
-
-
-                    <label className="label">
-                        <span className="label-text">Your Address</span>
-                    </label>
-                    <textarea
-                        required
-                        name='address'
-                        type="number"
-                        placeholder="Type here"
-                        className="textarea textarea-bordered w-full max-w-xs"
-                    />
-                    <label className="label">
-
-                    </label>
-
-                    <label className="label">
-                        <span className="label-text">Minimum Order Quantity</span>
-                    </label>
-                    <input
-                        name='minOrder'
-                        required
-                        defaultValue={min_order}
-                        type="number"
-                        placeholder="Type here"
-                        className="input input-bordered w-full max-w-xs"
-                    />
-                    <label className="label">
-                        <span className="label-text-alt text-red-600">{ }</span>;
-                    </label>
+                        <label className="label max-w-xs mx-auto">
+                            <span className="label-text">Your Phone Number</span>
+                        </label>
+                        <input
+                            required
+                            name='phone'
+                            type="number"
+                            placeholder="Type here"
+                            className="input input-bordered w-full max-w-xs input-success"
+                        />
+                        <label className="label max-w-xs mx-auto">
+                            <span className="label-text-alt text-red-600">{ }</span>;
+                        </label>
 
 
-                    <input
-                        type="submit"
-                        className="input input-bordered w-full max-w-xs btn btn-accent btn-outline"
-                        value='Place Order'
-                    />
-                </form>
+                        <label className="label max-w-xs mx-auto">
+                            <span className="label-text">Your Address</span>
+                        </label>
+                        <textarea
+                            required
+                            name='address'
+                            type="number"
+                            placeholder="Type here"
+                            className="textarea textarea-bordered textarea-success w-full max-w-xs"
+                        />
+                        <label className="label max-w-xs mx-auto">
+
+                        </label>
+
+                        <label className="label max-w-xs mx-auto">
+                            <span className="label-text">Minimum Order Quantity</span>
+                        </label>
+                        <input
+                            name='minOrder'
+                            required
+                            defaultValue={min_order}
+                            type="number"
+                            placeholder="Type here"
+                            className="input input-bordered w-full max-w-xs input-success"
+                        />
+                        <label className="label max-w-xs mx-auto">
+                            <span className="label-text-alt text-red-600">{ }</span>;
+                        </label>
+
+
+                        <input
+                            type="submit"
+                            className="input input-bordered w-full max-w-xs btn btn-accent"
+                            value='Place Order'
+                        />
+                    </form>
+                </div>
 
             </div>
 
