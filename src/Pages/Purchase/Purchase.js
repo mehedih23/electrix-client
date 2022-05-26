@@ -99,8 +99,8 @@ const Purchase = () => {
                         <h2 className="card-title">{name}</h2>
                         <p>{description}</p>
                         <p><span className='font-bold'>Price : $</span>{price}/piece</p>
-                        <p><span className='font-bold'>Minimum Order : </span>{min_order}</p>
-                        <p><span className='font-bold'>Available Quantity : </span>{available_quantity}</p>
+                        <p><span className='font-bold'>Minimum Order : </span>{min_order} piece</p>
+                        <p><span className='font-bold'>Available Quantity : </span>{available_quantity} piece</p>
                     </div>
                 </div>
 
