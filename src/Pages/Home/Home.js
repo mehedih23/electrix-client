@@ -1,6 +1,6 @@
 import React from 'react'
 import Banner from './Banner'
-import Contact from './Contact'
+import Address from './Address'
 import Reviews from './Reviews'
 import Summary from './Summary'
 import Tools from './Tools'
@@ -16,7 +16,7 @@ const Home = () => {
             <WhyBuy></WhyBuy>
             <WhoWe></WhoWe>
             <Reviews></Reviews>
-            <Contact></Contact>
+            <Address></Address>
         </div>
     )
 }

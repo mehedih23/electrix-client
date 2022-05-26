@@ -24,6 +24,7 @@ const Navbar = () => {
         </>}
         <li className='mx-2'><NavLink className='font-bold' to='/blog'>Blog</NavLink></li>
         <li className='mx-2'><NavLink className='font-bold' to='/portfolio'>My Portfolio</NavLink></li>
+        <li className='mx-2'><NavLink className='font-bold' to='/contact'>Contact Us</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-100">

@@ -26,6 +26,7 @@ import Blog from './Pages/Blog/Blog';
 import NotFound from './Pages/Shared/NotFound';
 import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
 import Team from './Pages/Home/Team';
+import Contact from './Pages/Contact/Contact';
 
 function App() {
   useEffect(() => {
@@ -69,6 +70,7 @@ function App() {
           <Route path='/blog' element={<Blog></Blog>}></Route>
           <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
           <Route path='/team' element={<Team></Team>}></Route>
+          <Route path='/contact' element={<Contact></Contact>}></Route>
 
 
 
