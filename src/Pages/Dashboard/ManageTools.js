@@ -16,8 +16,8 @@ const ManageTools = () => {
     return (
         <div className='px-1 md:px-2 lg:px-4'>
             <h3 className='text-3xl my-4'>Manage all tools</h3>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th>sl no.</th>

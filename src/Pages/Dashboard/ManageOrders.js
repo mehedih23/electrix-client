@@ -40,8 +40,8 @@ const ManageOrders = () => {
     return (
         <>
             <h3 className='text-3xl my-4'>Manage All Order</h3>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th>sl no.</th>

@@ -39,5 +39,3 @@
 -   [x] Sweetalert2
 -   [x] React Spinners
 -   [x] EmailJs
-
-### `npm test`
